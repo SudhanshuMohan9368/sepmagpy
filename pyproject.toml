@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sepmag"
+version = "0.1.0"
+description = "Python driver and data reader for SEPMAG bead-separation instruments"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["hidapi", "pyodbc", "pandas", "numpy", "scipy"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+sepmag = "sepmag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["hardware: needs the SEPMAG attached and the vendor app closed", "db: needs local SQL Server"]
